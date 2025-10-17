@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style-index.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>CRIAR CONTA</h1>
+
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="usuario" placeholder="Usuário" required><br>
+            <input type="password" name="password" placeholder="Senha" required><br>
+            <button type="submit">Cadastrar</button>
+
+            <div class="links" id="cadastroid">
+                <a  href="{% url 'login' %}">Voltar ao login</a>
+
+            </div>
+
+        </form>
+
+        
+    </div>
+</body>
+</html>
