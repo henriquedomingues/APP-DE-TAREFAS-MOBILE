@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style-paginicial.css' %}">
+    {% load static %}
+    <script src="{% static 'javascript/menu.js' %}"></script>
+    <title>Tarefas</title>
+
+</head>
+<body>
+
+    <!-- Menu lateral -->
+    <div id="menu">
+        <a href="#">Início</a>
+        <a href="#">Tarefas</a>
+        <a href="#">Configurações</a>
+        <a href="#">Ajuda</a>
+    </div>
+
+    <!-- Botão de menu -->
+    <button class="menu-btn" onclick="abrirMenu()"></button>
+
+    <!-- Conteúdo principal -->
+    <div class="tarefa-container">
+        <h3>Título da Tarefa</h3>
+        <div class="descricao">Descrição da tarefa</div>
+        <p class="data">Data de conclusão da tarefa</p>
+        <div class="botoes">
+            <button class="editar" onclick="editarTarefa()">editar</button>
+            <button class="concluido" onclick="concluirTarefa()">concluído</button>
+        </div>
+    </div>
+
+    <!-- Botão de adicionar -->
+    <button class="add-btn" onclick="window.location.href='criar_tarefa.html'">+</button>
+
+
+
+</body>
+</html>

@@ -10,8 +10,8 @@ def login_view(request):
         password = request.POST.get('password')
 
         try:
-            user = tblusuarios.objects.get(username=username, password=password)
-            return render(request, 'teste.html', {'usuario': user})
+            user = tblusuarios.objects.get(username=username, password=password)    
+            return render(request, 'pagina_inicial.html', {'usuario': user})
         except tblusuarios.DoesNotExist:
             messages.error(request, 'Usuário ou senha incorretos.')
 
