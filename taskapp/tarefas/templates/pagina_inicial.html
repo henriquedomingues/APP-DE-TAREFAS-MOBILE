@@ -1,48 +1,48 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+    <!DOCTYPE html>
+    <html lang="pt-BR">
     <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style-paginicial.css' %}">
-    {% load static %}
-    <script src="{% static 'javascript/menu.js' %}"></script>
-    <title>Tarefas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style-paginicial.css' %}">
+        <script src="{% static 'javascript/menu.js' %}"></script>
+        <title>Tarefas</title>
+    </head>
+    <body>
 
-</head>
-<body>
-
-    <!-- Menu lateral -->
-    <div id="menu">
-        <a href="#">Início</a>
-        <a href="#">Tarefas</a>
-        <a href="#">Configurações</a>
-        <a href="#">Ajuda</a>
-    </div>
-
-    <!-- Botão de menu -->
-    <button class="menu-btn" onclick="abrirMenu()"></button>
-
-    <!-- Conteúdo principal -->
-    <div class="tarefa-container">
-        <h3>Título da Tarefa</h3>
-        <div class="descricao">Descrição da tarefa</div>
-        <p class="data">Data de conclusão da tarefa</p>
-        <div class="botoes">
-            <button class="editar" onclick="editarTarefa()">editar</button>
-            <button class="concluido" onclick="concluirTarefa()">concluído</button>
+        <!-- Menu lateral -->
+        <div id="menu">
+            <a href="#">Início</a>
+            <a href="#">Tarefas</a>
+            <a href="#">Configurações</a>
+            <a href="#">Ajuda</a>
         </div>
-    </div>
 
-    <!-- Botão de adicionar -->
-    <!--
-    <button class="add-btn">
-        <a href="{% url 'criar_tarefa' %}   ">+</a>
-    </button> -->
+        <!-- Botão de menu -->
+        <button class="menu-btn" onclick="abrirMenu()"></button>
 
-    <a class="add-btn" href="{% url 'criar_tarefa' %}">+</a>
+        <!-- Listagem de tarefas -->
+        {% for tarefa in tarefas %}
+        <div class="tarefa-container">
+            <h3>{{ tarefa.titulo }}</h3>
+            <div class="descricao">{{ tarefa.descricao }}</div>
+            <p class="data">Data de conclusão: {{ tarefa.data_conclusao|date:"d/m/Y" }}</p>
+            <p class="status">Status: {{ tarefa.get_status_display }}</p>
 
+            <div class="botoes">
+                <a class="editar" href="{% url 'editar_tarefa' tarefa.id %}">Editar</a>
+                <form action="{% url 'concluir_tarefa' tarefa.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button class="concluido" type="submit">Concluído</button>
+                </form>
+            </div>
+        </div>
+        {% empty %}
+        <p style="text-align:center;">Nenhuma tarefa encontrada.</p>
+        {% endfor %}'
 
+        <!-- Botão de adicionar -->
+        <a class="add-btn" href="{% url 'criar_tarefa' %}">+</a>
 
-</body>
-</html>
+    </body>
+    </html>

@@ -1,21 +1,21 @@
 from django.db import models
 
 # Create your models here.
-
-class tblusuarios(models.Model):
-    username = models.CharField(max_length=150, null=False)
-    password = models.CharField(max_length=128, null=False)
-
+from django.contrib.auth.models import User
 
 class tbltarefas(models.Model):
-
-    status_choice = [
+    STATUS_CHOICES = [
         ('pendente', 'Pendente'),
-        ('em_andamento', 'Em Andamento'),   
+        ('em_andamento', 'Em Andamento'),
         ('concluida', 'Concluída'),
+
     ]
 
-    titulo = models.CharField(max_length=180, null=False)
-    descricao = models.TextField(max_length=500, null=True, blank=True)
-    data_criacao = models.DateTimeField(null=False, auto_now_add=True)
-    status = models.CharField(max_length=50, null=False, choices=status_choice, default='pendente')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    titulo = models.CharField(max_length=200)
+    descricao = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pendente')
+    data_conclusao = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return self.titulo
