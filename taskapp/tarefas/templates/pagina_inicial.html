@@ -35,7 +35,12 @@
     </div>
 
     <!-- Botão de adicionar -->
-    <button class="add-btn" onclick="window.location.href='criar_tarefa.html'">+</button>
+    <!--
+    <button class="add-btn">
+        <a href="{% url 'criar_tarefa' %}   ">+</a>
+    </button> -->
+
+    <a class="add-btn" href="{% url 'criar_tarefa' %}">+</a>
 
 
 

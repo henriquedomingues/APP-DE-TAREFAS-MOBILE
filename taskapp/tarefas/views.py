@@ -33,3 +33,19 @@ def cadastro_view(request):
             messages.error(request, 'Preencha todos os campos.')
 
     return render(request, 'cadastro.html')
+
+
+def criar_tarefa_view(request):
+    
+    if request.method == 'POST':
+        usuario = request.POST.get('usuario')
+        senha = request.POST.get('password')
+
+        if usuario and senha:
+                # Create a new tblusuarios entry (note: passwords stored as plain text here)
+                tblusuarios.objects.create(username=usuario, password=senha)
+                return redirect('criarTarefa.html')
+        else:
+                return render(request, 'index.html')
+    
+    return render(request, 'criarTarefa.html') 

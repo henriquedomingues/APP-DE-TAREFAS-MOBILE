@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style-criarTarefa.css' %}">
+<title>Criando Tarefa</title>
+</head>
+<body>
+
+    <a href=""> . </a>
+
+    <div class="container">
+        <h1>Criando Tarefa</h1>
+
+        <label for="titulo">Adicione Título:</label>
+        <input type="text" id="titulo" name="titulo" placeholder="Adicione Título">
+
+        <label for="descricao">Adicione Descrição:</label>
+        <textarea id="descricao" name="descricao" placeholder="Adicione Descrição"></textarea>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="pendente">Pendente</option>
+            <option value="andamento">Em andamento</option>
+            <option value="concluida">Concluída</option>
+        </select>
+
+        <label for="data">Data de Conclusão:</label>
+        <input type="date" id="data" name="data">
+
+        <div class="botoes">
+            <button class="btn btn-deletar">DELETAR</button>
+            <button class="btn btn-criar">CRIAR</button>
+        </div>
+    </div>
+
+</body>
+</html>
